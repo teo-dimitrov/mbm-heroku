@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head th:include="fragments/commons::head"></head>
+
+<body class="d-flex flex-column" id="body">
+
+<header th:replace="fragments/commons::nav"></header>
+<br>
+<br>
+<br>
+
+<div class="container">
+    <div class="card"><br>
+        <h1 class="center-block m-md-auto">Sorry... we have a server problem</h1>
+        <br>
+        <h2>
+            <a class="btn btn-outline-info mx-auto col-md-8 d-flex flex-column justify-content-center"
+               href="/">Go back to Home Page
+            </a>
+        </h2>
+        <br></div>
+</div>
+<footer class="mt-auto" th:replace="fragments/commons::footer"></footer>
+</body>
+</html>

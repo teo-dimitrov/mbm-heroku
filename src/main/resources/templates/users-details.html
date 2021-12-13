@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/commons::head"></head>
+
+<body class="d-flex flex-column" id="body">
+
+<header th:replace="fragments/commons::nav"></header>
+<br>
+<div class="container md-auto">
+    <br>
+
+    <div class="card">
+        <br>
+        <div class="card-body" th:object="${user}">
+            <h1 class="justify-content-md-center"
+                th:text="' Account Details about: '+ *{username}"></h1>
+            <br>
+            <table class="table table-striped table-dark rounded">
+                <thead>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row"></th>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td th:text="'Username: '+ *{username}"></td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>
+                        <div th:text="'First Name: ' + *{firstName}"></div>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td th:text="'Last Name: ' + *{lastName}"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td th:text="'Email: ' + *{email}"></td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td th:text="'Is Active: ' + *{isActive()}"></td>
+                    <td>
+                        <div>
+                            <a class="btn btn-outline-info row justify-content-md-center"
+                               th:href="@{/users/{id}/users-details/user-set-privilegs(id=*{id})}">
+                                Change Settings</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+            <br>
+            <br>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<footer th:replace="fragments/commons::footer"></footer>
+</body>
+</html>

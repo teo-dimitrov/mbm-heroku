@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/commons::head">
+
+</head>
+
+<body class="d-flex flex-column" id="body">
+
+<header th:replace="fragments/commons::nav"></header>
+<br>
+<div th:replace="fragments/commons::orders-nav"></div>
+<br>
+
+<div class="container">
+
+    <table class="table table-striped table-dark rounded" id="reportsList">
+
+    </table>
+
+
+    <table class="table table-striped table-dark rounded" >
+        <thead>
+        <tr class="text-muted">
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Added On</th>
+            <th scope="col">Deadline</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="o : ${orders}" th:object="${o}">
+            <th scope="row" th:text="*{id}"></th>
+            <td><a  class="btn text-warning" th:text="*{name}" th:href="@{/orders/{id}/order-details(id=*{id})}" th:alt="response"></a>
+            </td>
+            <td th:text="*{created}"></td>
+            <td>
+                <div class="row justify-content-md-center">
+                    <p class="text-danger"
+
+                       th:text="*{deadLine}"></p>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<br>
+<br>
+<br>
+<footer th:replace="fragments/commons::footer"></footer>
+</body>
+</html>

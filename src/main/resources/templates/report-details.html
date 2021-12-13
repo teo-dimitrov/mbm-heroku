@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head th:include="fragments/commons::head"></head>
+
+<body class="d-flex flex-column" id="body">
+
+<header th:replace="fragments/commons::nav"></header>
+<br>
+<div th:replace="fragments/commons::reports-nav"></div>
+<br>
+<div class="container">
+    <div class="card m-md-auto">
+        <input type="hidden" name="reportId" id="reportId" th:value="${report.id}">
+        <div class="card-body" th:object="${report}">
+            <h5 class="card-title" th:text="'Name: '+ *{name}">Job 1</h5>
+            <h6 class="card-subtitle mb-2 text-muted" th:text="'Status: ' + *{reportStatusEnum}">Status</h6>
+            <h6 class="card-subtitle mb-2 text-muted" th:text="'Type: ' + *{reportTypeEnum}">Type</h6>
+            <h6 class="card-subtitle mb-2 text-muted" th:text="'Description: '"></h6>
+            <textarea class="form-control m-md-auto"
+                      rows="10"
+                      style="background-color: white;" th:text="*{description}" readonly>Lorem...</textarea>
+            <br>
+            <table class="justify-content-end">
+                <tbody>
+                <tr>
+                    <td>
+                        <th:block th:if="*{isOwner}">
+                            <form>
+                                <a class="btn btn-success" th:href="@{/reports/{id}/edit(id=*{id})}">Edit</a>
+                            </form>
+                        </th:block>
+                    </td>
+                    <td>
+                        <th:block th:if="*{canDelete}">
+                            <form th:action="@{/reports/{id}(id=*{id})}" th:method="delete">
+                                <input type="submit" class="btn btn-danger" value="Delete"/>
+                            </form>
+                        </th:block>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <section class="comments">
+        <h2 class="text-white">Add Comment</h2>
+        <div>
+            <form id="commentForm" method="POST" th:action="@{/api/{reportId}/comments(reportId=${report.id})}">
+                <div class="form-group">
+                    <label class="glow-h5" for="message">Message</label>
+                    <textarea
+                            name="message"
+                            id="message"
+                            cols="30"
+                            rows="3"
+                            class="form-control"
+                            style="background-color: white;"></textarea>
+                    <small id="messageError" class="invalid-feedback">
+                        Message is required!
+                    </small>
+                </div>
+                <div class="form-group">
+                    <input type="submit"
+                           class="btn btn-outline-info text-white"
+                           id="postComment"
+                           value="Post Comment"/>
+                </div>
+            </form>
+        </div>
+        <div>
+            <span class="card" style="width:400px">
+                <div class="card-body" id="commentContainer"></div>
+            </span>
+        </div>
+    </section>
+    <br>
+    <br>
+    <div class="container mx-auto">
+        <section class="pictures">
+            <br>
+            <h2 class="text-white">Add picture</h2>
+            <br>
+            <div>
+                <form id="pictureForm"
+
+                      th:action="@{/reports/{reportId}/report-details/pictures/add(reportId=${report.id})}"
+                      th:method="POST"
+
+
+                      enctype="multipart/form-data">
+                    <input class="btn btn-outline-white" type="text" name="title" placeholder="Add Title Here..."/>
+                    <br/>
+                    <br/>
+                    <input class="btn btn-outline-info text-white" name="picture" type="file">
+
+                    <br>
+                    <br>
+                    <div class="all-classes-container">
+                        <input type="submit" class="btn btn-outline-info text-white" id="postPicture"
+                               value="Post Picture"/>
+                    </div>
+                </form>
+            </div>
+            <br>
+            <span id="pictureContainer"></span>
+
+        </section>
+    </div>
+
+
+</div>
+
+
+<br>
+<br>
+<script th:src="@{/js/comments.js}"></script>
+<script th:src="@{/js/pictures.js}"></script>
+<footer th:replace="fragments/commons::footer"></footer>
+</body>
+</html>

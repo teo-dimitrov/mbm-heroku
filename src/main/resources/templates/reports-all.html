@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/commons::head">
+
+</head>
+
+<body class="d-flex flex-column" id="body">
+
+<header th:replace="fragments/commons::nav"></header>
+<br>
+<div th:replace="fragments/commons::reports-nav"></div>
+<br>
+
+<div class="container">
+    <div class="input-group-append justify-content-md-center">
+        <input
+                id="searchInput"
+                type="search"
+                class="btn-group form-control"
+                placeholder="Search..."
+                aria-label="Search">
+
+    </div>
+
+    <table class="table table-striped table-dark rounded" id="reportsList">
+
+    </table>
+
+
+    <table class="table table-striped table-dark rounded">
+        <thead>
+        <tr class="text-muted">
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Type</th>
+            <th scope="col">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="r : ${reports}" th:object="${r}">
+            <th scope="row" th:text="*{id}"></th>
+            <td><a class="btn text-warning" th:text="*{name}" th:href="@{/reports/{id}/report-details(id=*{id})}"></a>
+            </td>
+            <td th:text="*{reportTypeEnum}"></td>
+            <td>
+                <div class="row justify-content-md-center">
+                    <p type="text"
+                       th:class="${r.reportStatusEnum.name() == 'UNCHECKED'} ? 'text-danger' : 'text-success'"
+                       th:text="*{reportStatusEnum}"></p>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<br>
+<br>
+<br>
+<footer th:replace="fragments/commons::footer"></footer>
+<script th:src="@{/js/reports-search.js}"></script>
+</body>
+</html>

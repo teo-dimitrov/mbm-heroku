@@ -1,0 +1,87 @@
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    background: #343a40;
+    text-align: center;
+}
+
+#body {
+    min-height: 100vh;
+    background-color: #687179;
+    /*background-color: #f3b25d;*/
+    /*background-color: #f6d4ab;*/
+    /*background-color: #5bbaea;*/
+    /*background-color: #2196d9;*/
+}
+
+.glow {
+    font-size: 50px;
+    color: #000000;
+    /*text-align: center;*/
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+.glow-rd {
+    font-size: 30px;
+    text-shadow: 0 0 10px #343a40,
+    0 0 60px #f5eccd;
+    color: #000000;
+    /*text-align: center;*/
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+.glow-h5 {
+    font-size: 15px;
+    text-shadow: 0 0 1px #343a40,
+    0 0 15px #89e0f3;
+    color: #000000;
+    /*text-align: center;*/
+    animation: glow 1s ease-in-out infinite alternate;
+    animation-fill-mode: backwards;
+}
+
+@-webkit-keyframes glow {
+    from {
+        text-shadow: 0 0 10px #fff,
+        0 0 10px #fff,
+        0 0 15px #89e0f3,
+        0 0 30px #c0e9f8,
+        0 0 40px #d4e2ef,
+        0 0 50px #afeaea,
+        0 0 55px #82e8ec;
+    }
+
+    to {
+        text-shadow: 0 0 10px #fff,
+        0 0 10px #f7fafc,
+        0 0 20px #94cff5,
+        0 0 30px #e6f5f3,
+        0 0 40px #fcfcfc,
+        0 0 45px #98e8f6,
+        0 0 55px #fdffff;
+    }
+}
+
+.form-control:focus{
+    border-color: #cccccc;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+#card-home {
+    background-image: url("../images/net-bg1-1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+
+.bg {
+    height: 100%;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+

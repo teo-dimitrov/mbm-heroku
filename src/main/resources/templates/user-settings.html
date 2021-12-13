@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons::head"></head>
+
+<body class="d-flex flex-column" id="body">
+
+<header th:replace="fragments/commons::nav"></header>
+<br>
+<div class="container">
+    <br>
+    <h2 class="text-center">Change User Credentials</h2>
+    <br>
+    <div class="card">
+        <br>
+        <form
+                th:action="@{/users/user-details/user-settings}"
+                th:method="PATCH"
+                th:object="${settingsModel}"
+
+                class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+            <div class="row">
+                <div class="form-group col-md-6 mb-3">
+                    <label for="firstName" class="font-weight-bold">First Name</label>
+                    <input id="firstName"
+                           name="firstName"
+                           th:field="*{firstName}"
+                           th:errorclass="is-invalid"
+                           type="text" min="2" max="20" class="form-control"
+                           placeholder="First name"/>
+                    <div>
+                        <small th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" id="firstNameError"
+                               class="form-text bg-danger rounded text-white">error</small>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 mb-3">
+                    <label for="lastName" class="font-weight-bold">Last Name</label>
+                    <input id="lastName"
+                           name="username"
+                           th:field="*{lastName}"
+                           th:errorclass="is-invalid"
+                           type="text" min="2" max="20" class="form-control"
+                           placeholder="Last Name"/>
+                    <div>
+                        <small th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" id="lastNameError"
+                               class="form-text bg-danger rounded text-white">error</small>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 mb-3">
+                    <label for="email" class="font-weight-bold">Email</label>
+                    <input id="email"
+                           name="username"
+                           th:field="*{email}"
+                           th:errorclass="is-invalid"
+                           type="text" min="2" max="20" class="form-control"
+                           placeholder="Email"/>
+                    <div>
+                        <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}" id="emailError"
+                               class="form-text bg-danger rounded text-white">error</small>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-secondary" type="submit">Submit</button>
+      </form>
+        <br>
+    </div>
+</div>
+<br>
+<br>
+<footer th:replace="fragments/commons::footer"></footer>
+</body>
+</html>

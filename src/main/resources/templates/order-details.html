@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/commons::head">
+
+</head>
+
+<body class="d-flex flex-column" id="body">
+
+<header th:replace="fragments/commons::nav"></header>
+<br>
+<div th:replace="fragments/commons::orders-nav"></div>
+<br>
+
+<div class="container m-md-auto">
+    <div class="card">
+        <input type="hidden" name="reportId" id="reportId" th:value="${order.id}">
+        <div class="card-body" th:object="${order}">
+            <h5 class="card-title" th:text="'Name: '+ *{name}">Job 1</h5>
+            <h6 class="card-subtitle mb-2 text-muted" th:text="'Added on: ' + *{created}">Added on</h6>
+            <h6 class="card-subtitle mb-2 text-muted" th:text="'Deadline: ' + *{deadLine}">Deadline</h6>
+            <h6 class="card-subtitle mb-2 text-muted" th:text="'Description: '"></h6>
+
+
+<!--            <script>-->
+<!--                function copycontent(){-->
+<!--                    var content = document.getElementById('ta').value;-->
+<!--                    document.getElementById('target').innerText = content;-->
+<!--                }-->
+<!--            </script>-->
+            <textarea class="form-control m-md-auto"
+                      rows="10"
+                      style="background-color: white;" th:text="*{description}" readonly>Lorem...</textarea>
+<!--            <button id='btn' onclick='copycontent();'>-->
+<!--                Copy-->
+<!--            </button>-->
+<!--            <p id='target' style='white-space:pre'>-->
+
+<!--            </p>-->
+            <br>
+            <table class="justify-content-end">
+                <tbody>
+                <tr>
+                    <td>
+                        <th:block th:if="*{isOwner}">
+                            <form>
+                                <a class="btn btn-success" th:href="@{/orders/{id}/edit(id=*{id})}">Edit</a>
+                            </form>
+                        </th:block>
+                    </td>
+                    <td>
+                        <th:block th:if="*{canDelete}">
+                            <form th:action="@{/orders/{id}(id=*{id})}" th:method="delete">
+                                <input type="submit" class="btn btn-danger" value="Delete"/>
+                            </form>
+                        </th:block>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+</div>
+<br>
+<br>
+<br>
+<footer th:replace="fragments/commons::footer"></footer>
+</body>
+</html>

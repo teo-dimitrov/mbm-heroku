@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/commons::head">
+
+</head>
+
+<body class="d-flex flex-column" id="body">
+
+<header th:replace="fragments/commons::nav"></header>
+<br>
+<div th:replace="fragments/commons::orders-nav"></div>
+<br>
+<div class="container m-md-auto">
+    <div class="card">
+        <br>
+        <form
+                th:action="@{/orders/add}"
+                th:method="POST"
+                th:object="${orderAddBindingModel}">
+            <div class="form-group col-auto">
+                <label for="name">Name</label>
+                <div>
+                    <input th:field="*{name}" th:errorclass="is-invalid" type="text" class="form-control"
+                           id="name" placeholder="Name" name="name">
+                </div>
+                <div>
+                    <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" id="nameError"
+                           class="form-text bg-danger rounded text-white">error</small>
+                </div>
+            </div>
+            <div class="form-group col-auto">
+                <label for="deadLine">Deadline</label>
+                <input th:field="*{deadLine}" th:errorclass="is-invalid" type="datetime-local"
+                       class="form-control" id="deadLine" name="deadline"
+                       aria-describedby="deadlineHelpInline">
+                <small th:if="${#fields.hasErrors('deadLine')}" th:errors="*{deadLine}" id="deadLineError"
+                       class="form-text bg-danger rounded text-white">
+                    error
+                </small>
+            </div>
+
+            <div class="form-group col-auto">
+                <div>
+                    <label for="description">Report Description</label>
+                    <textarea
+                            th:field="*{description}"
+                            th:errorclass="is-invalid"
+                            class="form-control" id="description" rows="5" placeholder="Description"></textarea>
+                </div>
+                <div>
+                    <small th:if="${#fields.hasErrors('description')}" th:errors="*{description}" id="descriptionError"
+                           class="form-text bg-danger rounded text-white">error</small>
+                </div>
+            </div>
+            <div class="row justify-content-md-center">
+                <button type="submit" class="btn btn-secondary">Submit</button>
+            </div>
+        </form>
+        <br>
+    </div>
+    <br>
+</div>
+<br>
+<br>
+<br>
+<footer th:replace="fragments/commons::footer"></footer>
+</body>
+</html>

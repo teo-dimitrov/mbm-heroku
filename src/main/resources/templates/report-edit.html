@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/commons::head"></head>
+
+<body class="d-flex flex-column" id="body">
+
+<header th:replace="fragments/commons::nav"></header>
+<br>
+
+<div th:replace="fragments/commons::reports-nav"></div>
+<br>
+<div class="container m-md-auto">
+    <div class="card">
+        <br>
+        <form
+              th:object="${reportModel}"
+              th:action="@{/reports/{id}/edit(id=*{id})}"
+              th:method="PATCH">
+            <div class="form-group col-auto">
+                <label for="name">Name</label>
+                <div>
+                    <input th:field="*{name}"
+                           th:errorclass="is-invalid" type="text" class="form-control"
+                           id="name" placeholder="Name">
+                </div>
+                <div>
+                    <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" id="nameError"
+                           class="form-text bg-danger rounded text-white">error</small>
+                </div>
+            </div>
+            <div class="form-group col-auto">
+                <label for="reportStatusEnum">select Status</label>
+                <select class="form-control" id="reportStatusEnum" name="reportStatusEnum">
+                    <option th:each="rStatus : ${status}"
+                            th:value="${rStatus}"
+                            th:text="${rStatus}"
+                            th:selected="${rStatus} == *{reportStatusEnum}">Status
+                    </option>
+                </select>
+                <small id="reportStatusEnumError" class="invalid-feedback form-text bg-danger rounded">
+                    Status is required
+                </small>
+            </div>
+
+            <div class="form-group col-auto">
+                <label for="reportTypeEnum">select Type</label>
+                <select class="form-control" id="reportTypeEnum" name="reportTypeEnum">
+                    <option th:each="rTypes : ${type}"
+                            th:value="${rTypes}"
+                            th:text="${rTypes}"
+                            th:selected="${rTypes} == *{reportTypeEnum}">Type
+                    </option>
+                </select>
+                <small id="reportTypeEnumError" class="invalid-feedback form-text bg-danger rounded">
+                    Type is required
+                </small>
+            </div>
+            <div class="form-group col-auto m-md-auto">
+                <div>
+                    <label for="description">Report Description</label>
+                    <textarea
+                            th:field="*{description}"
+                            th:errorclass="is-invalid"
+                            class="form-control" id="description" rows="5" placeholder="Description"></textarea>
+                </div>
+                <div>
+                    <small th:if="${#fields.hasErrors('description')}" th:errors="*{description}" id="descriptionError"
+                           class="form-text bg-danger rounded text-white">error</small>
+                </div>
+                <br>
+                <div class="row justify-content-center">
+                    <button type="submit" class="btn btn-secondary">Submit</button>
+                </div>
+                <br>
+            </div>
+
+        </form>
+    </div>
+</div>
+<br>
+<br>
+<footer th:replace="fragments/commons::footer"></footer>
+</body>
+</html>
