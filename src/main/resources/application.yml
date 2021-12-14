@@ -1,6 +1,3 @@
-  server.port: ${PORT:8080}
-
-
 spring:
   datasource:
     driverClassName: org.postgresql.Driver
@@ -37,10 +34,12 @@ spring:
 
   #Cloudinary Properties
 cloudinary:
-   cloud-name: tdimitrov
-     api-key: 299495348844489
-      api-secret: ${cloudinary_secret}
+  cloud-name: tdimitrov
+  api-secret: ${cloudinary_secret}
+  api-key: 299495348844489
 logging:
   level:
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+server.port: ${PORT:8080}
