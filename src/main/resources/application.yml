@@ -37,9 +37,9 @@ spring:
 
   #Cloudinary Properties
 cloudinary:
-  api-key: 299495348844489
-  api-secret: ${cloudinary_secret}
-  cloud-name: tdimitrov
+   cloud-name: tdimitrov
+     api-key: 299495348844489
+      api-secret: ${cloudinary_secret}
 logging:
   level:
     org.hibernate.SQL: DEBUG
