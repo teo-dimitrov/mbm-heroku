@@ -1,15 +1,12 @@
-
 #footer {
-    position: -ms-device-fixed;
+    position: fixed;
     bottom: 0;
     background: #343a40;
     text-align: center;
-    align-content: center;
-    alignment: center;
 }
 
 #body {
-    /*min-height: 100vh;*/
+    min-height: 100vh;
     background-color: #687179;
     /*background-color: #f3b25d;*/
     /*background-color: #f6d4ab;*/
