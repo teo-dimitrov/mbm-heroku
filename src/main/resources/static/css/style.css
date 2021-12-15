@@ -1,9 +1,11 @@
 
 #footer {
-    position: fixed;
+    position: -ms-device-fixed;
     bottom: 0;
     background: #343a40;
     text-align: center;
+    align-content: center;
+    alignment: center;
 }
 
 #body {
