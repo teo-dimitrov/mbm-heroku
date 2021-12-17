@@ -1,22 +1,31 @@
 spring:
   datasource:
-    driverClassName: org.postgresql.Driver
-    url: ${JDBC_DATABASE_URL:}
-    username: ${JDBC_DATABASE_USERNAME:}
-    password: =${JDBC_DATABASE_PASSWORD:}
+#    driverClassName: org.postgresql.Driver
+    driverClassName: com.mysql.cj.jdbc.Driver
+#    url: ${JDBC_DATABASE_URL:}
+    url: ${db_url:}
+
+#    url: jdbc:postgresql://localhost:5432//my_business_manager_final_project?useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+#    username: ${JDBC_DATABASE_USERNAME:}
+#    username: ${postgre_user_local}
+    username: ${db_username}
+
+#    password: =${JDBC_DATABASE_PASSWORD:}
+#    password: ${postgre_password}
+    password: ${db_password}
   sql:
     init:
       mode: always
   jpa:
     # Choose either MySQL 8 or MySQL 5 below
     # For MySQL 8
-    #database-platform: org.hibernate.dialect.MySQL8Dialect
+    database-platform: org.hibernate.dialect.MySQL8Dialect
     #For Postgre
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    #database-platform: org.hibernate.dialect.PostgreSQLDialect
     #For MySQL 5
     #database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     open-in-view: false
     properties:
       hibernate:
