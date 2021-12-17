@@ -3,16 +3,16 @@ spring:
 #    driverClassName: org.postgresql.Driver
     driverClassName: com.mysql.cj.jdbc.Driver
 #    url: ${JDBC_DATABASE_URL:}
-    url: ${db_url:}
+    url: "jdbc:mysql://${MYSQL_HOST}:3306/mbm?useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
 
 #    url: jdbc:postgresql://localhost:5432//my_business_manager_final_project?useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
-#    username: ${JDBC_DATABASE_USERNAME:}
+    username: ${JDBC_DATABASE_USERNAME:}
 #    username: ${postgre_user_local}
-    username: ${db_username}
+#    username: ${db_username}
 
-#    password: =${JDBC_DATABASE_PASSWORD:}
+    password: =${JDBC_DATABASE_PASSWORD:}
 #    password: ${postgre_password}
-    password: ${db_password}
+#    password: ${db_password}
   sql:
     init:
       mode: always
